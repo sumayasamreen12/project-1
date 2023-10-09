@@ -1,0 +1,52 @@
+game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    l1 = Button(game_board, text="Player : X", width=10)
+    l1.grid(row=1, column=1)
+    l2 = Button(game_board, text="Computer : O",
+                width=10, state=DISABLED)
+ 
+    l2.grid(row=2, column=1)
+    gameboard_pc(game_board, l1, l2)
+ 
+# Initialize the game board to play with another player
+def withplayer(game_board):
+    game_board.destroy()
+    game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    l1 = Button(game_board, text="Player 1 : X", width=10)
+ 
+    l1.grid(row=1, column=1)
+    l2 = Button(game_board, text="Player 2 : O",
+                width=10, state=DISABLED)
+ 
+    l2.grid(row=2, column=1)
+    gameboard_pl(game_board, l1, l2)
+ 
+# main function
+def play():
+    menu = Tk()
+    menu.geometry("250x250")
+    menu.title("Tic Tac Toe")
+    wpc = partial(withpc, menu)
+    wpl = partial(withplayer, menu)
+  
+    B1 = Button(menu, text="Single Player", command=wpc,
+                activeforeground='yellow',
+                activebackground="green", bg="orange",
+                fg="black", width=500, font='summer', bd=5)
+ 
+    B2 = Button(menu, text="Multi Player", command=wpl, activeforeground='yellow',
+                activebackground="green", bg="orange", fg="black",
+                width=500, font='summer', bd=5)
+ 
+    B3 = Button(menu, text="Exit", command=menu.quit, activeforeground='yellow',
+                activebackground="green", bg="orange", fg="black",
+                width=500, font='summer', bd=5)
+    B1.pack(side='top')
+    B2.pack(side='top')
+    B3.pack(side='top')
+    menu.mainloop()
+
+# Call main function
+if _name_ == '_main_':
+    play()
